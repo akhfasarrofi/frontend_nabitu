@@ -54,11 +54,18 @@ export default function AddInovicesPage() {
    * Handles form submission by creating an invoice and displaying a toast notification.
    */
   const onFinish = async () => {
-    await createInvoice(getValues() as unknown as CreateInvoice)
-    reset()
-    toast.success('Success', {
-      description: 'Invoice created successfully',
-    })
+    try {
+      await createInvoice(getValues() as unknown as CreateInvoice)
+      reset()
+      toast.success('Success', {
+        description: 'Invoice created successfully',
+      })
+    }
+    catch {
+      toast.success('Failed', {
+        description: 'Invoice created failed',
+      })
+    }
   }
 
   return (
