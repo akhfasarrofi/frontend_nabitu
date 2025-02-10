@@ -31,7 +31,7 @@ export async function up(db: Kysely<any>): Promise<void> {
     .addColumn('id', 'uuid', col => col.primaryKey().defaultTo(sql`gen_random_uuid()`))
     .addColumn('invoice_number', 'text', col => col.unique().notNull())
     .addColumn('name', 'varchar(255)', col => col.notNull())
-    .addColumn('amount', 'int2', col => col.notNull())
+    .addColumn('amount', 'integer', col => col.notNull())
     .addColumn('status', sql`"invoice_status"`, col => col.notNull())
     .$call(withTimestamps)
     .execute()
